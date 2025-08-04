@@ -1,0 +1,53 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #f4f4f4;
+  color: #222;
+}
+
+.app-container {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 240px;
+  background-color: #2e2e2e;
+  color: white;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.sidebar h1 {
+  font-size: 20px;
+  margin-bottom: 1rem;
+}
+
+.sidebar a {
+  display: block;
+  padding: 8px 12px;
+  margin-bottom: 6px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: white;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+  background-color: #444;
+  font-weight: bold;
+}
+
+.main-view {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  background-color: #ffffff;
+}
+
+img.upload-preview {
+  max-width: 100%;
+  max-height: 70vh;
+  display: block;
+  margin-top: 1rem;
+}
