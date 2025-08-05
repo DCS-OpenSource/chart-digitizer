@@ -1,12 +1,57 @@
-# React + Vite
+# Chart Digitizer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Install Instructions
 
-Currently, two official plugins are available:
+- Download the latest release installer from releases, and run the `.exe`.
+- This will create a desktop shortcut for the app, and install it onto your system
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Build from source
 
-## Expanding the ESLint configuration
+- Clone the repository
+- make sure you have node.js installed
+- run `npm i` to install the required packages
+- test with `npm run dev`
+- to package, run `npm run build` then `npm run package` and your installer file will be in the `dist` folder
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Usage Instructions
+### Step 1:
+Import your chart
+
+![alt text](Readme-images/import.png)
+
+### Step 2:
+
+Define your Axes, and Set Titles and labels
+
+![Define Axes](Readme-images/define_axes.png)
+
+### Step 3:
+
+Enter a series name, set a colour, then add the line.  
+Next, define all your points for the series, then repeat for a new series
+
+![Define Axes](Readme-images/Digitize_points.png)
+
+### Step 4:
+
+If needed, you can inspect specific points. *note this is still WIP*
+
+![View Data](Readme-images/view_data.png)
+
+### Step 5:
+
+Query tool is WIP
+
+### Step 6:
+
+Export your data, in either CSV or JSON, there is an included python script to convert the JSON to a Matplotlib chart
+
+![Export](Readme-images/Export.png)
+
+### Matplotlib Script:
+
+Here is a sample output from the test chart used in development
+
+![chart](Readme-images/demo-matplotlib.png)
