@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { ImageContext } from "../context/ImageContext";
+import "../pages/css/ExportPage.css";
 
 export default function ExportPage() {
   const { series, axes } = useContext(ImageContext);
@@ -17,8 +18,11 @@ export default function ExportPage() {
     return min + clamped * (max - min);
   };
 
-  const buildExportData = () =>
-    series.map((s) => ({
+  const buildExportData = () => ({
+    title: axes.title || "",
+    xAxisLabel: axes.x.label || "",
+    yAxisLabel: axes.y.label || "",
+    series: series.map((s) => ({
       name: s.name,
       color: s.color,
       points: s.points.map((pt) => ({
@@ -28,7 +32,8 @@ export default function ExportPage() {
           y: convertPixelToReal(axes.y, pt)
         }
       }))
-    }));
+    }))
+  });
 
   const downloadJSON = () => {
     const data = buildExportData();
@@ -40,9 +45,11 @@ export default function ExportPage() {
   };
 
   const downloadCSV = () => {
-    let csv = "Series,Color,Pixel X,Pixel Y,Real X,Real Y\n";
+    const data = buildExportData();
+    let csv = `Title:,${data.title}\nX Axis:,${data.xAxisLabel}\nY Axis:,${data.yAxisLabel}\n\n`;
+    csv += "Series,Color,Pixel X,Pixel Y,Real X,Real Y\n";
 
-    buildExportData().forEach((s) => {
+    data.series.forEach((s) => {
       s.points.forEach((pt) => {
         const line = [
           s.name,
@@ -70,17 +77,36 @@ export default function ExportPage() {
   };
 
   return (
-    <div>
+    <div className="export-page">
       <h2>Export Chart Data</h2>
+
       {series.length === 0 ? (
         <p>No data available. Go to the Digitize page to add data first.</p>
       ) : (
-        <div style={{ marginTop: "1rem" }}>
-          <button onClick={downloadJSON} style={{ marginRight: "1rem" }}>
-            Export as JSON
-          </button>
-          <button onClick={downloadCSV}>Export as CSV</button>
-        </div>
+        <>
+          <div className="export-meta">
+            <div><strong>Title:</strong> {axes.title || "—"}</div>
+            <div><strong>X Axis Label:</strong> {axes.x.label || "—"}</div>
+            <div><strong>Y Axis Label:</strong> {axes.y.label || "—"}</div>
+
+            <div className="series-summary">
+              <h4>Series Summary:</h4>
+              {series.map((s) => (
+              <div className="series-item" key={s.name}>
+                <span className="series-color" style={{ backgroundColor: s.color }}></span>
+                <span className="series-label">
+                  {s.name} ({s.points.length} points)
+                </span>
+              </div>
+
+              ))}
+            </div>
+          </div>
+          <div className="export-buttons">
+            <button onClick={downloadJSON}>Export as JSON</button>
+            <button onClick={downloadCSV}>Export as CSV</button>
+          </div>
+        </>
       )}
     </div>
   );
