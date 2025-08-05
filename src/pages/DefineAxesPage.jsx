@@ -240,7 +240,7 @@ export default function DefineAxesPage() {
               onChange={(e) => handleInputChange("x", "max", e.target.value)}
             />
           </label>
-
+          <hr></hr>
           <button onClick={() => setCurrentAxis("y")}>Define Y Axis</button>
           <label>
             Y Min:
@@ -258,7 +258,7 @@ export default function DefineAxesPage() {
               onChange={(e) => handleInputChange("y", "max", e.target.value)}
             />
           </label>
-
+          <hr></hr>
           <button onClick={() => {
             viewport.current = { ...defaultViewport };
             draw();

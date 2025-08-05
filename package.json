@@ -1,7 +1,7 @@
 {
   "name": "chart-digitizer",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "main": "src/electron.cjs",
   "scripts": {
@@ -19,11 +19,27 @@
     "productName": "Chart Digitizer",
     "files": [
       "dist",
-      "src/electron.js"
+      "src/electron.cjs",
+      "package.json"
     ],
     "directories": {
       "buildResources": "public"
     }
+  },
+
+
+  "extraMetadata": {
+    "main": "main.jsx"
+  },
+  "win": {
+    "target": "nsis",
+    "icon": "public/icon.ico"
+  },
+  "mac": {
+    "target": "dmg"
+  },
+  "linux": {
+    "target": "AppImage"
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",

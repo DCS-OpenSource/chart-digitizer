@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { ImageContext } from "../context/ImageContext";
+import "../pages/css/ImportPage.css";
 
 export default function ImportPage() {
   const { imageData, setImageData } = useContext(ImageContext);
@@ -14,10 +15,20 @@ export default function ImportPage() {
   };
 
   return (
-    <div>
+    <div className="import-page">
       <h2>Import Chart</h2>
-      <input type="file" accept="image/*" onChange={handleFileChange} />
-      {imageData && <img src={imageData} alt="Uploaded Chart" className="upload-preview" />}
+
+      <label className="file-label">
+        <span>Select an image file:</span>
+        <input type="file" accept="image/*" onChange={handleFileChange} />
+      </label>
+
+      {imageData && (
+        <div className="preview-container">
+          <h3>Preview</h3>
+          <img src={imageData} alt="Uploaded Chart" className="upload-preview" />
+        </div>
+      )}
     </div>
   );
 }

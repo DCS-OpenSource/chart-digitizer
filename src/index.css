@@ -40,7 +40,9 @@ body {
 
 .main-view {
   flex: 1;
-  padding: 1rem;
+      padding-right: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
   overflow-y: auto;
   background-color: #ffffff;
 }
