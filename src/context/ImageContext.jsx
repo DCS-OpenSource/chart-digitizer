@@ -2,47 +2,43 @@ import React, { createContext, useState } from "react";
 
 export const ImageContext = createContext();
 
-export function ImageProvider({ children }) {
-  // Stored chart image
+export const ImageProvider = ({ children }) => {
   const [imageData, setImageData] = useState(null);
 
-  // Axis calibration info
   const [axes, setAxes] = useState({
-    x: { p1: null, p2: null, min: null, max: null },
-    y: { p1: null, p2: null, min: null, max: null }
+    title: '',
+    x: { label: '', min: null, max: null, p1: null, p2: null },
+    y: { label: '', min: null, max: null, p1: null, p2: null }
   });
 
-  // Digitized series (e.g., one per weight line)
   const [series, setSeries] = useState([]);
   const [activeSeriesId, setActiveSeriesId] = useState(null);
 
-  // Utility: add a new series
   const addSeries = (name, color) => {
-    const id = `series-${Date.now()}`;
-    const newSeries = { id, name, color, points: [] };
-    setSeries((prev) => [...prev, newSeries]);
+    const id = Date.now().toString();
+    setSeries((prev) => [...prev, { id, name, color, points: [] }]);
     setActiveSeriesId(id);
   };
 
-  // Utility: add a point to the currently selected series
-  const addPointToActiveSeries = (point) => {
-    setSeries((prev) =>
-      prev.map((s) =>
-        s.id === activeSeriesId ? { ...s, points: [...s.points, point] } : s
-      )
-    );
-  };
-
-  // Utility: delete a series
   const deleteSeries = (id) => {
     setSeries((prev) => prev.filter((s) => s.id !== id));
     if (activeSeriesId === id) setActiveSeriesId(null);
   };
 
-  // Utility: clear points from selected series
   const clearPointsFromSeries = (id) => {
     setSeries((prev) =>
       prev.map((s) => (s.id === id ? { ...s, points: [] } : s))
+    );
+  };
+
+  const addPointToActiveSeries = (point) => {
+    if (!activeSeriesId) return;
+    setSeries((prev) =>
+      prev.map((s) =>
+        s.id === activeSeriesId
+          ? { ...s, points: [...s.points, point] }
+          : s
+      )
     );
   };
 
@@ -54,16 +50,15 @@ export function ImageProvider({ children }) {
         axes,
         setAxes,
         series,
-        setSeries,
-        activeSeriesId,
-        setActiveSeriesId,
         addSeries,
-        addPointToActiveSeries,
         deleteSeries,
-        clearPointsFromSeries
+        clearPointsFromSeries,
+        addPointToActiveSeries,
+        activeSeriesId,
+        setActiveSeriesId
       }}
     >
       {children}
     </ImageContext.Provider>
   );
-}
+};

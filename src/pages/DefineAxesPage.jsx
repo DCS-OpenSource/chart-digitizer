@@ -223,7 +223,31 @@ export default function DefineAxesPage() {
         </div>
 
         <div className="axis-controls">
+          <label>
+            Graph Title:
+            <input
+              type="text"
+              value={axes.title}
+              onChange={(e) =>
+                setAxes((prev) => ({ ...prev, title: e.target.value }))
+              }
+            />
+          </label>
+            
           <button onClick={() => setCurrentAxis("x")}>Define X Axis</button>
+          <label>
+            X Label:
+            <input
+              type="text"
+              value={axes.x.label || ""}
+              onChange={(e) =>
+                setAxes((prev) => ({
+                  ...prev,
+                  x: { ...prev.x, label: e.target.value }
+                }))
+              }
+            />
+          </label>
           <label>
             X Min:
             <input
@@ -240,8 +264,21 @@ export default function DefineAxesPage() {
               onChange={(e) => handleInputChange("x", "max", e.target.value)}
             />
           </label>
-          <hr></hr>
+            
           <button onClick={() => setCurrentAxis("y")}>Define Y Axis</button>
+          <label>
+            Y Label:
+            <input
+              type="text"
+              value={axes.y.label || ""}
+              onChange={(e) =>
+                setAxes((prev) => ({
+                  ...prev,
+                  y: { ...prev.y, label: e.target.value }
+                }))
+              }
+            />
+          </label>
           <label>
             Y Min:
             <input
@@ -258,14 +295,16 @@ export default function DefineAxesPage() {
               onChange={(e) => handleInputChange("y", "max", e.target.value)}
             />
           </label>
-          <hr></hr>
-          <button onClick={() => {
-            viewport.current = { ...defaultViewport };
-            draw();
-          }}>
+          <button
+            onClick={() => {
+              viewport.current = { ...defaultViewport };
+              draw();
+            }}
+          >
             Reset Zoom
           </button>
         </div>
+
       </div>
     </div>
   );
