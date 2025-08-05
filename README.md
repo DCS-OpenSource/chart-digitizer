@@ -19,7 +19,7 @@
 ### Step 1:
 Import your chart
 
-![alt text](Readme-images/import.png)
+![alt text](Readme-images/Import.png)
 
 ### Step 2:
 
