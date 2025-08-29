@@ -1,5 +1,8 @@
 # Chart Digitizer
 
+[![Latest release](https://img.shields.io/github/v/release/DCS-OpenSource/chart-digitizer)](https://github.com/DCS-OpenSource/chart-digitizer/releases/latest)
+
+
 ## Install Instructions
 
 - Download the latest release installer from releases, and run the `.exe`.
