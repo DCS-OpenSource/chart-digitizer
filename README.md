@@ -1,6 +1,8 @@
 # Chart Digitizer
 
 [![Latest release](https://img.shields.io/github/v/release/DCS-OpenSource/chart-digitizer)](https://github.com/DCS-OpenSource/chart-digitizer/releases/latest)
+[![License](https://img.shields.io/github/license/DCS-OpenSource/chart-digitizer)](https://github.com/DCS-OpenSource/chart-digitizer/blob/master/LICENSE)
+
 
 
 ## Install Instructions
